@@ -1,0 +1,18 @@
+{
+  "name": "envt",
+  "version": "1.0.0",
+  "description": "Manage env vars easily",
+  "main": "index.js",
+  "bin": {
+    "envt": "bin/envt.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaquimadraz/envt"
+  },
+  "author": "Joaquim Adráz",
+  "license": "MIT"
+}
