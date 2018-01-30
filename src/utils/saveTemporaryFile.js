@@ -1,10 +1,10 @@
 const fs = require('fs')
-const utils = require('../utils')
+const randomString = require('./randomString')
 
 const saveTemporaryFile = (content, options = {}) => {
   return new Promise((resolve, reject) => {
     const tmpFolder = options.tmpPath || './tmp'
-    const tmpFilePath = `${tmpFolder}/${utils.randomString()}`
+    const tmpFilePath = `${tmpFolder}/${randomString()}`
 
     if (!fs.existsSync(tmpFolder)) {
       fs.mkdirSync(tmpFolder)
