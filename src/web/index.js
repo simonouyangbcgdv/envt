@@ -7,21 +7,21 @@ const buildServer = (onSaveAndClose) => {
   app.set('view engine', 'pug')
   app.set('views', './src/web/views')
 
-  app.get('/', function (req, res) {
+  app.get('/', (req, res) => {
     // TODO: Get from configuration. Remove hardcoded value.
     downloadEnvFile('env/env.vars')
-      .then(env => {
+      .then((env) => {
         res.render('index', { env })
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).send(`Something broke! ${err}`)
       })
-  });
+  })
 
-  app.post('/keys', function (req, res) {
+  app.post('/keys', (req, res) => {
     res.json({})
     onSaveAndClose()
-  });
+  })
 
   return app
 }

@@ -1,0 +1,12 @@
+{
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ]
+  },
+  "extends": "airbnb-base"
+}

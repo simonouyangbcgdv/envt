@@ -8,12 +8,12 @@ test('downloads .env file as object', (done) => {
   const getObjectMockResponse = { Body: Buffer.from('KEY=value') }
   sinon.stub(utils, 'downloadFileFromS3').resolves(getObjectMockResponse)
 
-  downloadEnvFile('file').then(env => {
-    expect(env).toEqual([{ key: 'KEY', value: 'value' }])
+  downloadEnvFile('file').then((data) => {
+    expect(data).toEqual([{ key: 'KEY', value: 'value' }])
     done()
   })
 
-  utils.downloadFileFromS3.restore();
+  utils.downloadFileFromS3.restore()
 })
 
 describe('given no credentials present on ENV', () => {
@@ -23,11 +23,11 @@ describe('given no credentials present on ENV', () => {
   })
 
   afterAll(() => {
-    process.env = env;
+    process.env = env
   })
 
-  test('fails to download file for missing credentials', (done) => {
-    downloadEnvFile('file').catch(err => {
+  test('fails to download file for missing credentials', (done) => {
+    downloadEnvFile('file').catch((err) => {
       expect(err.code).toBe('CredentialsError')
       done()
     })

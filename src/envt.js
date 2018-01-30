@@ -1,14 +1,15 @@
 const web = require('./web')
-const opn = require('opn');
+const opn = require('opn')
 
 const edit = (flags) => {
-  server = web(() => {
+  const server = web(() => {
     // TODO: Exit app after save?
     // process.exit(1)
   })
+
   server.listen(flags.port)
 
-  opn(`http://localhost:${flags.port}`);
+  opn(`http://localhost:${flags.port}`)
 }
 
 module.exports = {
@@ -20,5 +21,5 @@ module.exports = {
       default:
         console.log('Invalid option!')
     }
-  }
+  },
 }

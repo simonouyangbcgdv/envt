@@ -1,6 +1,6 @@
-const parseEnvKeysToObject = envText => {
+const parseEnvKeysToObject = (envText) => {
   const envRule = /[A-Z]+=.+/
-  const envLines = envText.split("\n")
+  const envLines = envText.split('\n')
 
   return envLines.reduce((envObject, definition) => {
     if (definition.match(envRule)) {
