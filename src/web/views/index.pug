@@ -1,9 +1,18 @@
 doctype html
 html(lang="en")
   head
-    title= title
-    script(type='text/javascript').
+    title Envt
+    script(src='https://cdn.jsdelivr.net/npm/vue')
+  body
+    h1 Envt
+    h3 Config vars
+    div(id="app")
+      div(v-for="item in keys")
+        input(v-model="item.key")
+        input(v-model="item.value")
+      button(v-on:click="saveAndClose") save
 
+    script(type='text/javascript').
       const checkStatus = response => {
         if (response.status >= 200 && response.status < 300) {
           return response
@@ -18,33 +27,29 @@ html(lang="en")
         return response.json()
       }
 
-      const saveAndClose = () => {
-        fetch('/keys', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            key: 'value',
-          })
-        }).then(checkStatus)
-        .then(parseJSON)
-        .then(data => {
-          console.log('request succeeded with JSON response', data)
-          window.close()
-        }).catch(error => {
-          console.log('request failed', error)
-        })
-
-        return false
-      }
-
-  body
-    h1= message
-
-    ul
-      for value, key in env
-        li
-          div= `${key}=${value}`
-
-    button(onclick='saveAndClose()') save and close
+      var app = new Vue({
+        el: '#app',
+        data: {
+          // From backend. !{something}
+          keys: !{JSON.stringify(env)}
+        },
+        methods: {
+          saveAndClose: function () {
+            fetch('/keys', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(JSON.stringify(this.keys))
+            }).then(checkStatus)
+            .then(parseJSON)
+            .then(data => {
+              console.log('request succeeded with JSON response', data)
+              // TODO: Close on success?
+              // window.close()
+            }).catch(error => {
+              console.log('request failed', error)
+            })
+          }
+        }
+      })

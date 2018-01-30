@@ -8,13 +8,10 @@ const buildServer = (onSaveAndClose) => {
   app.set('views', './src/web/views')
 
   app.get('/', function (req, res) {
+    // TODO: Get from configuration. Remove hardcoded value.
     downloadEnvFile('env/env.vars')
-      .then(data => {
-        res.render('index', {
-          title: 'Hey',
-          message: 'Hello there!',
-          env: data,
-        })
+      .then(env => {
+        res.render('index', { env })
       })
       .catch(err => {
         res.status(500).send(`Something broke! ${err}`)
