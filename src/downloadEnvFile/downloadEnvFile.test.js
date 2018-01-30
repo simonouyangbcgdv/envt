@@ -9,7 +9,7 @@ test('downloads .env file as object', (done) => {
   sinon.stub(utils, 'downloadFileFromS3').resolves(getObjectMockResponse)
 
   downloadEnvFile('file').then(env => {
-    expect(env['KEY']).toBe('value')
+    expect(env).toEqual([{ key: 'KEY', value: 'value' }])
     done()
   })
 

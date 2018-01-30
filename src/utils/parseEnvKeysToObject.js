@@ -5,11 +5,11 @@ const parseEnvKeysToObject = envText => {
   return envLines.reduce((envObject, definition) => {
     if (definition.match(envRule)) {
       const [key, value] = definition.split('=')
-      envObject[key] = value
+      envObject.push({ key, value })
     }
 
     return envObject
-  }, {})
+  }, [])
 }
 
 module.exports = parseEnvKeysToObject
