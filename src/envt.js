@@ -2,7 +2,9 @@ const web = require('./web')
 const opn = require('opn');
 
 const edit = (flags) => {
-  web.listen(flags.port)
+  server = web(() => process.exit(1))
+  server.listen(flags.port)
+  
   opn(`http://localhost:${flags.port}`);
 }
 
