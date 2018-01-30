@@ -1,9 +1,12 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const downloadEnvFile = require('../downloadEnvFile')
+const saveEnvFile = require('../saveEnvFile')
 
 const buildServer = (onSaveAndClose) => {
   const app = express()
 
+  app.use(bodyParser.json())
   app.set('view engine', 'pug')
   app.set('views', './src/web/views')
 
@@ -19,8 +22,16 @@ const buildServer = (onSaveAndClose) => {
   })
 
   app.post('/keys', (req, res) => {
-    res.json({})
-    onSaveAndClose()
+    const newEnv = req.body
+
+    saveEnvFile('env/env.vars', newEnv)
+      .then((data) => {
+        res.json(data)
+        onSaveAndClose()
+      })
+      .catch((err) => {
+        res.status(500).send(`Something broke! ${err}`)
+      })
   })
 
   return app

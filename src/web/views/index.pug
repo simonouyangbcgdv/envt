@@ -40,7 +40,7 @@ html(lang="en")
               headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify(JSON.stringify(this.keys))
+              body: JSON.stringify(this.keys)
             }).then(checkStatus)
             .then(parseJSON)
             .then(data => {
