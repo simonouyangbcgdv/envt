@@ -38,7 +38,13 @@ html(lang="en")
 
         return false
       }
-      
+
   body
     h1= message
+
+    ul
+      for value, key in env
+        li
+          div= `${key}=${value}`
+
     button(onclick='saveAndClose()') save and close

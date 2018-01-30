@@ -1,1 +1,3 @@
-export { default } from './downloadEnvFile'
+const downloadEnvFile = require('./downloadEnvFile')
+
+module.exports = downloadEnvFile
