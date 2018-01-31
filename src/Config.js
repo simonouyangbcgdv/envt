@@ -1,30 +1,38 @@
 class Config {
-  constructor(configJson) {
-    this.configJson = configJson || {}
+  constructor(config) {
+    this.config = config || {}
   }
 
   get port() {
-    return this.configJson.port
+    return this.config.port
   }
 
   set port(value) {
-    this.configJson.port = value
+    this.config.port = value
   }
 
   set credentials(value) {
-    this.configJson.credentials = value
+    this.config.credentials = value
   }
 
   get credentialsFromAwsCli() {
-    return this.configJson.credentials === 'awscli'
+    return this.config.credentials === 'awscli'
   }
 
   get credentialsFromEnv() {
-    return this.configJson.credentials === 'env'
+    return this.config.credentials === 'env'
+  }
+
+  get s3Bucket() {
+    return this.config.s3Bucket
+  }
+
+  set s3Bucket(value) {
+    this.config.s3Bucket = value
   }
 
   get awsOptions() {
-    if (this.configJson.credentials !== 'env') { return {} }
+    if (this.config.credentials !== 'env') { return {} }
 
     return {
       credentials: {
@@ -39,4 +47,6 @@ class Config {
 module.exports = new Config({
   credentials: 'awscli',
   port: 5000,
+  s3Bucket: '',
+  environment: 'development',
 })

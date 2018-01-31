@@ -12,9 +12,9 @@ const edit = (params) => {
     return
   }
 
-  const server = web(() => {
+  const server = web(params[0], () => {
     // TODO: Exit app after save?
-    // process.exit(1)
+    process.exit(1)
   })
 
   server.listen(Config.port)

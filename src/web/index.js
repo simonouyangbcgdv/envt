@@ -1,9 +1,11 @@
 const express = require('express')
+const chalk = require('chalk')
 const bodyParser = require('body-parser')
 const downloadEnvFile = require('../downloadEnvFile')
 const saveEnvFile = require('../saveEnvFile')
+const utils = require('../utils')
 
-const buildServer = (onSaveAndClose) => {
+const buildServer = (fileEnv, onSaveAndClose) => {
   const app = express()
 
   app.use(bodyParser.json())
@@ -11,12 +13,12 @@ const buildServer = (onSaveAndClose) => {
   app.set('views', './src/web/views')
 
   app.get('/', (req, res) => {
-    // TODO: Get from configuration. Remove hardcoded value.
-    downloadEnvFile('env/env.vars')
+    downloadEnvFile(`env/env.${fileEnv}`)
       .then((env) => {
         res.render('index', { env })
       })
       .catch((err) => {
+        utils.log(`Something broke! ${err}`)
         res.status(500).send(`Something broke! ${err}`)
       })
   })
@@ -24,12 +26,14 @@ const buildServer = (onSaveAndClose) => {
   app.post('/keys', (req, res) => {
     const newEnv = req.body
 
-    saveEnvFile('env/env.vars', newEnv)
+    saveEnvFile(`env/env.${fileEnv}`, newEnv)
       .then((data) => {
         res.json(data)
+        utils.log(`env.${chalk.green(fileEnv)} was updated`)
         onSaveAndClose()
       })
       .catch((err) => {
+        utils.log(`Something broke! ${err}`)
         res.status(500).send(`Something broke! ${err}`)
       })
   })

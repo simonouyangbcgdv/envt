@@ -16,17 +16,17 @@ test('downloads .env file as object', (done) => {
 
 describe('given no credentials present on ENV', () => {
   beforeAll(() => {
-    process.env.AWS_ACCESS_KEY_ID = ''
-    process.env.AWS_SECRET_ACCESS_KEY = ''
+    process.env.AWS_ACCESS_KEY_ID = 'dd'
+    process.env.AWS_SECRET_ACCESS_KEY = 'dd'
   })
 
   afterAll(() => {
     process.env = env
   })
 
-  test('fails to download file for missing credentials', (done) => {
+  test('fails to download file for invalid credentials', (done) => {
     downloadEnvFile('file').catch((err) => {
-      expect(err.code).toBe('CredentialsError')
+      expect(err.code).toBe('AccessDenied')
       done()
     })
   })

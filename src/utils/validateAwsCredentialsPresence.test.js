@@ -5,6 +5,7 @@ const Config = require('../Config')
 const validateAwsCredentialsPresence = require('./validateAwsCredentialsPresence')
 
 const originalEnv = Object.assign({}, process.env)
+const sandbox = sinon.createSandbox()
 
 describe('checking configs from awscli', () => {
   test('returns accessKeyId after requesting aws for called details', (done) => {
@@ -37,11 +38,20 @@ describe('checking configs from awscli', () => {
 })
 
 describe('checking configs from env', () => {
+  beforeAll(() => {
+    sandbox.stub(Config, 'credentialsFromAwsCli').get(() => false)
+    sandbox.stub(Config, 'credentialsFromEnv').get(() => true)
+  })
+
+  afterAll(() => {
+    sandbox.restore()
+    process.env = originalEnv
+  })
+
   test('returns accessKeyId from env', (done) => {
     process.env.AWS_ACCESS_KEY_ID = 'thatId'
     process.env.AWS_SECRET_ACCESS_KEY = 'thatSecret'
 
-    const stub = sinon.stub(Config, 'credentialsFromEnv').get(() => true)
     AWS.mock('STS', 'getCallerIdentity', (params, cb) => (
       cb(null, { UserId: process.env.AWS_ACCESS_KEY_ID })
     ))
@@ -52,8 +62,7 @@ describe('checking configs from env', () => {
         done()
       })
 
-    stub.restore()
-    process.env = originalEnv
+    AWS.restore('STS')
   })
 
   test('fails for missing aws env keys', (done) => {
@@ -65,8 +74,6 @@ describe('checking configs from env', () => {
         expect(err).toEqual('MissingAWSEnvKey')
         done()
       })
-
-    process.env = originalEnv
   })
 })
 

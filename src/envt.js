@@ -8,12 +8,23 @@ const edit = require('./actions/edit')
 const overrideDefaultConfigs = (flags) => {
   if (flags.port) { Config.port = flags.port }
   if (flags.credentials) { Config.credentials = flags.credentials }
+  if (flags.s3Bucket) { Config.s3Bucket = flags.s3Bucket }
+  if (flags.s3Bucket) { Config.s3Bucket = flags.s3Bucket }
+}
+
+const validateStart = () => {
+  if (!Config.s3Bucket) {
+    // eslint-disable-next-line
+    return Promise.reject('MissingS3Bucket')
+  }
+
+  return utils.validateAwsCredentialsPresence()
 }
 
 module.exports = (input, args, flags) => {
   overrideDefaultConfigs(flags)
 
-  utils.validateAwsCredentialsPresence()
+  validateStart()
     .then(() => {
       switch (input) {
         case 'edit':

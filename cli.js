@@ -13,6 +13,10 @@ const cli = meow(usageText, {
     credentials: {
       type: 'string',
     },
+    s3Bucket: {
+      type: 'string',
+      alias: 'b',
+    },
   },
 })
 

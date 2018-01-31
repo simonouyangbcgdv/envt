@@ -1,4 +1,5 @@
 const fs = require('fs')
+const Config = require('../Config')
 const utils = require('../utils')
 
 const saveEnvFile = (file, envObject, options = {}) => new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ const saveEnvFile = (file, envObject, options = {}) => new Promise((resolve, rej
     .then((filePath) => {
       const buffer = fs.readFileSync(filePath)
 
-      utils.uploadFileToS3({ bucket: 'secrets-blackhole', key: file, data: buffer })
+      utils.uploadFileToS3({ bucket: Config.s3Bucket, key: file, data: buffer })
         .then((data) => {
           // TODO: Remove temporary file
           resolve(data)
