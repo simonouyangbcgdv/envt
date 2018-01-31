@@ -1,8 +1,8 @@
 const fs = require('fs')
 const rimraf = require('rimraf')
-const saveTemporaryFile = require('./saveTemporaryFile')
+const saveTemporaryFile = require('../../src/utils/saveTemporaryFile')
 
-const testTmpFolder = './tmp/temporary'
+const testTmpFolder = './test/support/tmp'
 
 const deleteTestTmpFolder = () => {
   rimraf(testTmpFolder, (err) => {

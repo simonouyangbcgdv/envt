@@ -1,6 +1,6 @@
-const utils = require('../utils')
-const edit = require('./edit')
-const constants = require('../constants')
+const utils = require('../../src/utils')
+const edit = require('../../src/cli/edit')
+const constants = require('../../src/constants')
 
 test('fails for missing environment option', () => {
   const spy = jest.spyOn(utils, 'log')

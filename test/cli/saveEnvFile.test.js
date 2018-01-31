@@ -1,15 +1,15 @@
 const AWS = require('aws-sdk-mock')
 const rimraf = require('rimraf')
-const saveEnvFile = require('./saveEnvFile')
+const saveEnvFile = require('../../src/cli/saveEnvFile')
 
-const tmpPath = './tmp/temporary'
+const testTmpFolder = './test/support/tmp'
 
 beforeAll(() => {
   AWS.mock('S3', 'putObject', { ETag: '123' })
 })
 
 afterAll(() => {
-  rimraf(tmpPath, (err) => {
+  rimraf(testTmpFolder, (err) => {
     if (err) { throw new Error('unable to delete test tmp folder') }
   })
 
@@ -17,7 +17,7 @@ afterAll(() => {
 })
 
 test('creates file to upload', (done) => {
-  saveEnvFile('env/env.vars', [{ key: 'HEY', value: 'VALUE' }], { tmpPath })
+  saveEnvFile('env/env.vars', [{ key: 'HEY', value: 'VALUE' }], { testTmpFolder })
     .then((data) => {
       expect(data).toEqual({ ETag: '123' })
       done()

@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const { usageText } = require('./constants')
 const Config = require('./Config')
 const utils = require('./utils')
-const edit = require('./actions/edit')
+const edit = require('./cli/edit')
 
 const overrideDefaultConfigs = (flags) => {
   if (flags.port) { Config.port = flags.port }

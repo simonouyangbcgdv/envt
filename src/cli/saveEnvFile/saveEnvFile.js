@@ -1,6 +1,6 @@
 const fs = require('fs')
-const Config = require('../Config')
-const utils = require('../utils')
+const Config = require('../../Config')
+const utils = require('../../utils')
 
 const saveEnvFile = (file, envObject, options = {}) => new Promise((resolve, reject) => {
   const tmpPath = options.tmpPath || './tmp'

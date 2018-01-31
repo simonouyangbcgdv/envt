@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk-mock')
-const downloadEnvFile = require('./downloadEnvFile')
+const downloadEnvFile = require('../../src/cli/downloadEnvFile')
 
 const env = Object.assign({}, process.env)
 

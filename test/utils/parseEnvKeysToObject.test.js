@@ -1,4 +1,4 @@
-const parseEnvKeysToObject = require('./parseEnvKeysToObject')
+const parseEnvKeysToObject = require('../../src/utils/parseEnvKeysToObject')
 
 test('converts single item js array to key=value ENV format', () => {
   const envObject = parseEnvKeysToObject('KEY=VALUE\n')

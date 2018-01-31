@@ -1,8 +1,8 @@
 const AWS = require('aws-sdk-mock')
 const sinon = require('sinon')
 
-const Config = require('../Config')
-const validateAwsCredentialsPresence = require('./validateAwsCredentialsPresence')
+const Config = require('../../src/Config')
+const validateAwsCredentialsPresence = require('../../src/utils/validateAwsCredentialsPresence')
 
 const originalEnv = Object.assign({}, process.env)
 const sandbox = sinon.createSandbox()

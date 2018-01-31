@@ -1,4 +1,4 @@
-const convertObjectToEnv = require('./convertObjectToEnv')
+const convertObjectToEnv = require('../../src/utils/convertObjectToEnv')
 
 test('converts single item js array to key=value ENV format', () => {
   const envText = convertObjectToEnv([{ key: 'KEY', value: 'VALUE' }])

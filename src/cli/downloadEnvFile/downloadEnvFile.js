@@ -1,5 +1,5 @@
-const Config = require('../Config')
-const utils = require('../utils')
+const Config = require('../../Config')
+const utils = require('../../utils')
 
 module.exports = file => new Promise((resolve, reject) => {
   utils.downloadFileFromS3({ bucket: Config.s3Bucket, key: file })
