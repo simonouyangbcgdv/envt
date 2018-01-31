@@ -5,6 +5,8 @@ const saveTemporaryFile = require('./saveTemporaryFile')
 const uploadFileToS3 = require('./uploadFileToS3')
 const convertObjectToEnv = require('./convertObjectToEnv')
 const log = require('./log')
+const hasAwsCliConfigured = require('./hasAwsCliConfigured')
+const validateAwsCredentialsPresence = require('./validateAwsCredentialsPresence')
 
 module.exports = {
   downloadFileFromS3,
@@ -14,4 +16,6 @@ module.exports = {
   uploadFileToS3,
   convertObjectToEnv,
   log,
+  hasAwsCliConfigured,
+  validateAwsCredentialsPresence,
 }
