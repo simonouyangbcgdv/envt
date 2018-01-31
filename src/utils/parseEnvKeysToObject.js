@@ -7,7 +7,6 @@ const parseEnvKeysToObject = (envText) => {
       const [key, value] = definition.split('=')
       envObject.push({ key, value })
     }
-
     return envObject
   }, [])
 }

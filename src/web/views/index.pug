@@ -7,9 +7,16 @@ html(lang="en")
     h1 Envt
     h3 Config vars
     div(id="app")
-      div(v-for="item in keys")
-        input(v-model="item.key")
-        input(v-model="item.value")
+      div(
+        v-for="(item, index) in keys"
+      )
+        input(v-model="item.key" style="text-transform: uppercase")
+        input(v-model="item.value" )
+        button(v-on:click="removeKey(index)") remove
+      div
+        input(v-model="newKey.key" style="text-transform: uppercase")
+        input(v-model="newKey.value")
+        button(v-on:click="addNewKey") add
       button(v-on:click="saveAndClose") save
 
     script(type='text/javascript').
@@ -31,9 +38,27 @@ html(lang="en")
         el: '#app',
         data: {
           // From backend. !{something}
-          keys: !{JSON.stringify(env)}
+          keys: !{JSON.stringify(env)},
+          newKey: {}
         },
         methods: {
+          addNewKey: function () {
+            if (!this.newKey.key || !this.newKey.value) {
+              return
+            }
+
+            // Validate existing key name?
+            const newKey = Object.assign({}, {
+              key: this.newKey.key.toUpperCase(),
+              value: this.newKey.value,
+            })
+
+            this.keys.push(newKey)
+            this.newKey = {}
+          },
+          removeKey: function (index) {
+            this.keys.splice(index, 1)
+          },
           saveAndClose: function () {
             fetch('/keys', {
               method: 'POST',
