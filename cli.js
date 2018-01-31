@@ -9,10 +9,12 @@ const cli = meow(usageText, {
     port: {
       type: 'number',
       alias: 'p',
-      default: 5000,
+    },
+    credentials: {
+      type: 'string',
     },
   },
 })
 
 const action = cli.input.shift()
-envt.run(action, cli.input, cli.flags)
+envt(action, cli.input, cli.flags)

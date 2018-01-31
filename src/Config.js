@@ -3,6 +3,18 @@ class Config {
     this.configJson = configJson || {}
   }
 
+  get port() {
+    return this.configJson.port
+  }
+
+  set port(value) {
+    this.configJson.port = value
+  }
+
+  set credentials(value) {
+    this.configJson.credentials = value
+  }
+
   get credentialsFromAwsCli() {
     return this.configJson.credentials === 'awscli'
   }
@@ -26,4 +38,5 @@ class Config {
 
 module.exports = new Config({
   credentials: 'awscli',
+  port: 5000,
 })
