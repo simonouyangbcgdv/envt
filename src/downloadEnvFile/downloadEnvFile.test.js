@@ -1,19 +1,17 @@
+const AWS = require('aws-sdk-mock')
 const downloadEnvFile = require('./downloadEnvFile')
-const utils = require('../utils')
-const sinon = require('sinon')
 
 const env = Object.assign({}, process.env)
 
 test('downloads .env file as object', (done) => {
-  const getObjectMockResponse = { Body: Buffer.from('KEY=value') }
-  sinon.stub(utils, 'downloadFileFromS3').resolves(getObjectMockResponse)
+  AWS.mock('S3', 'getObject', { Body: Buffer.from('KEY=value') })
 
   downloadEnvFile('file').then((data) => {
     expect(data).toEqual([{ key: 'KEY', value: 'value' }])
     done()
   })
 
-  utils.downloadFileFromS3.restore()
+  AWS.restore('S3')
 })
 
 describe('given no credentials present on ENV', () => {

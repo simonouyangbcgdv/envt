@@ -18,4 +18,6 @@ test('creates file to upload', (done) => {
       expect(data).toEqual({ ETag: '123' })
       done()
     })
+
+  AWS.restore('S3')
 })
