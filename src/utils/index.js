@@ -4,6 +4,7 @@ const randomString = require('./randomString')
 const saveTemporaryFile = require('./saveTemporaryFile')
 const uploadFileToS3 = require('./uploadFileToS3')
 const convertObjectToEnv = require('./convertObjectToEnv')
+const log = require('./log')
 
 module.exports = {
   downloadFileFromS3,
@@ -12,4 +13,5 @@ module.exports = {
   saveTemporaryFile,
   uploadFileToS3,
   convertObjectToEnv,
+  log,
 }

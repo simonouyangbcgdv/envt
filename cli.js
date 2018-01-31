@@ -2,23 +2,10 @@
 
 const meow = require('meow')
 const envt = require('./src/envt')
+const { usageText } = require('./src/constants')
 
-const cli = meow(`
-Usage
-  $ envt <input>
-
-Options
-  --env, -e Which environment variable to edit
-  --port, -p Port where the web app is running, default: 5000
-
-Examples
-  $ envt edit --env production
-`, {
+const cli = meow(usageText, {
   flags: {
-    env: {
-      type: 'string',
-      alias: 'e',
-    },
     port: {
       type: 'number',
       alias: 'p',
@@ -27,4 +14,5 @@ Examples
   },
 })
 
-envt.run(cli.input[0], cli.flags)
+const action = cli.input.shift()
+envt.run(action, cli.input, cli.flags)

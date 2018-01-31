@@ -1,25 +1,16 @@
-const web = require('./web')
-const opn = require('opn')
+const utils = require('./utils')
+const { usageText } = require('./constants')
 
-const edit = (flags) => {
-  const server = web(() => {
-    // TODO: Exit app after save?
-    // process.exit(1)
-  })
-
-  server.listen(flags.port)
-
-  opn(`http://localhost:${flags.port}`)
-}
+const edit = require('./actions/edit')
 
 module.exports = {
-  run: (input, flags) => {
+  run: (input, args, flags) => {
     switch (input) {
       case 'edit':
-        edit(flags)
+        edit(args, flags)
         break
       default:
-        console.log('Invalid option!')
+        utils.log(usageText)
     }
   },
 }
