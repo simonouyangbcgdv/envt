@@ -3,9 +3,13 @@
 ☁️ Environment variables management from S3
 
 ## Requirements
-- S3 Bucket
-- `env` folder at the root
-- Add files inside `env` folder: `env.production`, `env.staging`
+- [AWS CLI](https://aws.amazon.com/cli/) configured or AWS env keys accessible from ENV: 
+  - `AWS_ACCESS_KEY_ID`
+  - `AWS_SECRET_ACCESS_KEY`
+  - `AWS_DEFAULT_REGION`
+- AWS S3 Bucket
+- `env` folder at the root with the env files inside
+- Env files need to follow the naming convention - `env.environment`. e.g. `env.staging`
 
 ## Installation
 ```
