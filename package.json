@@ -1,7 +1,7 @@
 {
   "name": "envt",
   "version": "1.0.0",
-  "description": "Manage env vars easily",
+  "description": "Heroku style config vars management from S3",
   "main": "index.js",
   "bin": {
     "envt": "./cli.js"
@@ -20,7 +20,8 @@
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^22.1.4"
+    "jest": "^22.1.4",
+    "sinon": "^4.2.2"
   },
   "dependencies": {
     "aws-sdk": "^2.188.0",
@@ -30,7 +31,6 @@
     "meow": "^4.0.0",
     "opn": "^5.2.0",
     "pug": "^2.0.0-rc.4",
-    "rimraf": "^2.6.2",
-    "sinon": "^4.2.2"
+    "rimraf": "^2.6.2"
   }
 }
