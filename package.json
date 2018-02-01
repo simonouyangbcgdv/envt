@@ -1,7 +1,7 @@
 {
   "name": "envt",
   "version": "1.0.0",
-  "description": "Heroku style config vars management from S3",
+  "description": "ENV vars management from S3",
   "main": "index.js",
   "bin": {
     "envt": "./cli.js"

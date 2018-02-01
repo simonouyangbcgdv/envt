@@ -1,12 +1,15 @@
 const usageText = `
 Usage
-  $ envt edit <environment>\tLaunched web app to edit ENV keys.
-  $ envt list <environment>\tPrints the content of the env file.
 
-Required
-  --s3Bucket\t\t\tAWS S3 Bucket where the .env files are stored.
+  $ envt <command> <environment>
+
+  $ envt edit <environment>\tLaunch web app to edit environment variables
+  $ envt list <environment>\tPrint environment variables
 
 Options
+
+  --s3Bucket\t\t\tAWS S3 Bucket where the .env files are stored. This is required.
+
   --port, -p\t\t\tPort where the web app is running.
 
   --credentials [awscli, env]\tWhere to read credentials from, aws cli configuration or from the ENV.
