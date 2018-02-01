@@ -2,6 +2,16 @@
 
 ☁️ Environment variables management from S3
 
+## Requirements
+- S3 Bucket
+- `env` folder at the root
+- Add files inside `env` folder: `env.production`, `env.staging`
+
+## Installation
+```
+npm install -g envt
+```
+
 ## Usage
 ```
 Usage
@@ -33,11 +43,6 @@ Examples
 ## How to export the environment variables?
 ```
 export $(envt list ENVIRONMENT --s3Bucket BUCKET_NAME)
-```
-
-## Installation
-```
-npm install -g envt
 ```
 
 ## License
