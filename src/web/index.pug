@@ -2,24 +2,35 @@ doctype html
 html(lang="en")
   head
     title Envt
-    script(src='https://cdn.jsdelivr.net/npm/vue')
+    link(rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato")
+    style(type="text/css").
+      body, input, button { font-family: "Lato", sans-serif }
+      body { background-color: #FAFBFC }
+    script(src="https://cdn.jsdelivr.net/npm/vue")
   body
-    h1 Envt
-    h3 Config vars
-    div(id="app")
-      div(
-        v-for="(item, index) in keys"
-      )
-        input(v-model="item.key" style="text-transform: uppercase")
-        input(v-model="item.value" )
-        button(v-on:click="removeKey(index)") remove
-      div
-        input(v-model="newKey.key" style="text-transform: uppercase")
-        input(v-model="newKey.value")
-        button(v-on:click="addNewKey") add
-      button(v-on:click="saveAndClose") save
-
-    script(type='text/javascript').
+    div(class="center mw5 mw7-ns")
+      h1(class="f1 b mh1 dark-gray") Envt
+      div(id="app")
+        div(
+          v-for="(item, index) in keys"
+        )
+          div(class="flex")
+            input(v-model="item.key" class="h2 flex-auto mv1 mh1 ph2 br2 ba b--moon-gray dark-gray" placeholder="KEY" style="text-transform: uppercase")
+            input(v-model="item.value" class="h2 flex-auto mv1 mh1 ph2 br2 ba b--moon-gray dark-gray" placeholder="VALUE")
+            div(class="w-10 ml1")
+              button(v-on:click="removeKey(index)" class="w-100 f6 mv1 h2 bg-dark-red bn white br2 pointer dim") remove
+        div(class="mv2 bb b--light-gray")
+        div(class="flex")
+          input(v-model="newKey.key" class="h2 flex-auto mv1 mh1 ph2 br2 ba b--moon-gray gray" placeholder="KEY" style="text-transform: uppercase")
+          input(v-model="newKey.value" class="h2 flex-auto mv1 mh1 ph2 br2 ba b--moon-gray gray" placeholder="VALUE")
+          div(class="w-10 ml1")
+            button(v-on:click="addNewKey" class="w-100 f6 mv1 h2 bg-dark-green bn white ph3 br2 pointer dim") add
+        div(class="ma1 mt3")
+          button(v-on:click="saveAndClose" class="h2 f6 bg-green bn white ph3 br2 pointer dim") save
+      a(href="https://github.com/joaquimadraz/envt")
+        img(style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-graphite@2x.png" alt="Fork me on GitHub")
+    script(type="text/javascript").
       const checkStatus = response => {
         if (response.status >= 200 && response.status < 300) {
           return response
@@ -34,7 +45,7 @@ html(lang="en")
         return response.json()
       }
 
-      var app = new Vue({
+      const app = new Vue({
         el: '#app',
         data: {
           // From backend. !{something}
