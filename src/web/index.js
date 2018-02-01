@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const chalk = require('chalk')
 const bodyParser = require('body-parser')
 const downloadEnvFile = require('../cli/downloadEnvFile')
@@ -10,7 +11,7 @@ const buildServer = (fileEnv, onSaveAndClose) => {
 
   app.use(bodyParser.json())
   app.set('view engine', 'pug')
-  app.set('views', './src/web/views')
+  app.set('views', path.join(__dirname, '/views'))
 
   app.get('/', (req, res) => {
     downloadEnvFile(`env/env.${fileEnv}`)
