@@ -4,6 +4,7 @@ const { usageText } = require('./constants')
 const Config = require('./Config')
 const utils = require('./utils')
 const edit = require('./cli/edit')
+const list = require('./cli/list')
 
 const overrideDefaultConfigs = (flags) => {
   if (flags.port) { Config.port = flags.port }
@@ -29,6 +30,9 @@ module.exports = (input, args, flags) => {
       switch (input) {
         case 'edit':
           edit(args)
+          break
+        case 'list':
+          list(args)
           break
         default:
           utils.log(usageText)

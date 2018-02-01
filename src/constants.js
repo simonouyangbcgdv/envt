@@ -1,6 +1,7 @@
 const usageText = `
 Usage
   $ envt edit <environment>\tLaunched web app to edit ENV keys.
+  $ envt list <environment>\tPrints the content of the env file.
 
 Required
   --s3Bucket\t\t\tAWS S3 Bucket where the .env files are stored.
