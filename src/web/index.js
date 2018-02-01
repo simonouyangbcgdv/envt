@@ -10,7 +10,7 @@ const buildServer = (fileEnv, onSaveAndClose) => {
 
   app.use(bodyParser.json())
   app.set('view engine', 'pug')
-  app.set('views', './src/web')
+  app.set('views', './src/web/views')
 
   app.get('/', (req, res) => {
     downloadEnvFile(`env/env.${fileEnv}`)
