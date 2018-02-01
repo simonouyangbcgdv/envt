@@ -12,8 +12,9 @@ const saveEnvFile = (file, envObject, options = {}) => new Promise((resolve, rej
 
       utils.uploadFileToS3({ bucket: Config.s3Bucket, key: file, data: buffer })
         .then((data) => {
-          // TODO: Remove temporary file
           resolve(data)
+          // Delete temporary file
+          fs.unlinkSync(filePath)
         })
     })
     .catch((err) => {

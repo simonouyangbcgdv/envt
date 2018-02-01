@@ -4,19 +4,15 @@ const saveTemporaryFile = require('../../src/utils/saveTemporaryFile')
 
 const testTmpFolder = './test/support/tmp'
 
-const deleteTestTmpFolder = () => {
+const deleteTestTmpFolder = (done) => {
   rimraf(testTmpFolder, (err) => {
     if (err) { throw new Error('unable to delete test tmp folder') }
+    done()
   })
 }
 
-beforeAll(() => {
-  deleteTestTmpFolder()
-})
-
-afterAll(() => {
-  deleteTestTmpFolder()
-})
+beforeEach(deleteTestTmpFolder)
+afterEach(deleteTestTmpFolder)
 
 test('creates /tmp folder if does not exists', (done) => {
   expect(fs.existsSync(testTmpFolder)).toEqual(false)
