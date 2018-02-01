@@ -1,11 +1,12 @@
 const Config = require('../Config')
 const hasAwsCliConfigured = require('./hasAwsCliConfigured')
 
+const isKeyPresent = key => process.env[key] && process.env[key].length > 0
+
 const areEnvVarsPresent = () => (
-  process.env.AWS_ACCESS_KEY_ID &&
-    process.env.AWS_ACCESS_KEY_ID.length > 0 &&
-      process.env.AWS_SECRET_ACCESS_KEY &&
-        process.env.AWS_SECRET_ACCESS_KEY.length > 0
+  isKeyPresent('AWS_ACCESS_KEY_ID') &&
+    isKeyPresent('AWS_SECRET_ACCESS_KEY') &&
+      isKeyPresent('AWS_DEFAULT_REGION')
 )
 
 const validateAwsCredentialsPresence = () => {

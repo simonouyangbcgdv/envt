@@ -10,7 +10,7 @@ Options
   --port, -p\t\t\tPort where the web app is running.
 
   --credentials [awscli, env]\tWhere to read credentials from, aws cli configuration or from the ENV.
-                \t\tIf from the ENV, AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY have to be set.
+                \t\tIf from the ENV, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION have to be set.
 
 Examples
   $ envt edit production --s3Bucket secrets

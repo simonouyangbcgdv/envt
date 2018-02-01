@@ -51,6 +51,7 @@ describe('checking configs from env', () => {
   test('returns accessKeyId from env', (done) => {
     process.env.AWS_ACCESS_KEY_ID = 'thatId'
     process.env.AWS_SECRET_ACCESS_KEY = 'thatSecret'
+    process.env.AWS_DEFAULT_REGION = 'thatRegion'
 
     AWS.mock('STS', 'getCallerIdentity', (params, cb) => (
       cb(null, { UserId: process.env.AWS_ACCESS_KEY_ID })
