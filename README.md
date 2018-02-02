@@ -17,6 +17,11 @@ npm install -g envt
 ```
 
 ## Usage
+
+<p align="center">
+<img src="extra/example.gif" width="100%" />
+</p>
+
 ```
 Usage
 
