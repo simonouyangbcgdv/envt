@@ -2,6 +2,10 @@
 
 ☁️ Environment variables management from S3
 
+___
+
+**Someone pointed out that AWS has a service for this - [AWS System Manager Parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-about.html) - which looks exacly what I was looking for. I'll investigate if it fits my needs before continuing working on this package.**
+___
 ## Requirements
 - [AWS CLI](https://aws.amazon.com/cli/) configured or AWS env keys accessible from ENV: 
   - `AWS_ACCESS_KEY_ID`
